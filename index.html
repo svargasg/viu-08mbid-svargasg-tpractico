@@ -1,1 +1,174 @@
-<div id="app"></div>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3plus/1.9.2/d3plus.full.min.js"></script>
+</head>
+
+<body>
+<h1 style="font-family:verdana;"> ONBOARDING DE CLIENTES </h1>
+<h2 style="font-family:verdana;"> Análisis del comportamiento de los usuarios en el onboarding de la aplicación de una entidad financiera</h2>
+
+<div>
+  <h3> Presentado por: Sebastian Vargas Gantiva </h3>
+  <h3>
+    Url: <a href="https://js-svargasg-tpractico.stackblitz.io">https://js-svargasg-tpractico.stackblitz.io</a>
+  </h3>
+  <h3>
+    GitHub: <a href="https://github.com/svargasg/viu-08mbid-svargasg-tpractico">https://github.com/svargasg/viu-08mbid-svargasg-tpractico</a>
+  </h3>
+</div>
+
+<h2><u> Introducción </u></h2>
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  Una entidad financiera Colombiana lanzó un producto bancario 100% digital a finales del 2021, todo se gestiona a través de una aplicación móvil que tiene distribución en las múltiples plataformas
+  del mercado (iOS, Android), dicha app captura un conjunto de eventos asociados al onboarding del usuario hasta que se convierte en un cliente, cada evento permite caracterizar un paso en el flujo 
+  del onboarding. Dicha compañía carece de un mecanismo o solución de analítica descriptiva que permita entender el comportamiento de todo el flujo de onboarding.
+</p>
+</font>
+</div>
+
+<h2><u> Fuente de datos </u></h2>
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  Para este caso de estudio los datos provienen del datalake de la compañia que estan almacenados en un formato parquet, por temas de acuerdo de confidencialidad de datos trabajaremos con un subconjunto
+  de los originales con un preprocesamiento adicional, dicho dataset está regulado bajo políticas de seguridad de la información y gobierno de datos para no infringir en las políticas de tratamiento de datos de la compañía. Dado lo anterior no podremos compartir datos en crudo.
+</p>
+<p>
+  El dataset contempla eventos del flujo del onboarding con atributos como:
+  <ul>
+  <li>idClient: identificador único del cliente</li>
+  <li>onboarding_at: fecha en la que inició el onboarding en la aplicación</li>
+  <li>last_onboarding_status: Último estado de onboarding en el cual quedo el usuario</li>
+  <li>finish_onboarding_at: fecha en la que finalizó exitosamente el onboarding en la aplicación</li>
+  <li>Variables características del usuario tales como género, departamento, edad, tipo cotizante</li>
+  <li>Variables características de cada paso en el flujo tales como validación biométrica, errores de validación, listas restrictivas, abandonos</li>
+</ul>
+</p>
+</font>
+</div>
+
+<h2><u> Objetivos </u></h2>
+<div>
+<font face="nunito,arial,verdana"> 
+  <p>
+    De manera general se requiere analizar el comportamiento de los usuarios a lo largo del flujo de onboarding en la aplicación, de manera específica se tratará de abordar los siguientes ítems
+    <ul>
+      <li>Evolución diaria, semanal y mensual de los usuarios que inician/finalizan onboarding</li>
+      <li>Identificar las etapas en el flujo en donde los usuarios abandonan el proceso de manera incompleta</li>
+      <li>Duración que le toma a un usuario completar el flujo y cada una de sus etapas</li>
+      <li>Identificar las causales por las que un usuario no logra superar la validación biométrica</li>
+      <li>Entender las características propias de los usuarios que van participando en el onboarding</li>
+    </ul>
+  </p>
+</font>
+</div>
+
+<h2><u> Metodología </u></h2>
+<div>
+<font face="nunito,arial,verdana"> 
+  <p>
+  Se desarrollará un dashboard en Power BI que le permita a los usuarios funcionales del área de producto como también a miembros c-level de la compañía identificar el comportamiento del flujo de onboarding, permitiéndoles interactuar con múltiples visualizaciones que reflejan métricas de interés y que son caracterizadas en diferentes dimensiones.
+</p>
+<p>
+  Para lo anterior segmentamos el reporte en 3 hojas que permitan identificar:
+  <ul>
+    <li>el <b>comportamiento global de onboarding</b> con métricas como, cantidad de clientes con onboarding finalizado/iniciado, cantidad de clientes que cayeron en proceso de validación adicional (blacklisted), usuarios que abandonaron el flujo, duración promedio de onboarding, funnel de onboarding de usuarios, distribución de usuarios por último evento generado </li>
+    <li>el <b>cohortes de onboarding</b> para identificar el % de usuarios que no logran finalizar el onboarding tanto a nivel diario como semanal a lo largo del tiempo, promedio de eventos por etapa del flujo, y duración promedio por etapa en el onboarding </li>
+    <li>el <b>comportamiento en la etapa de validación biométrica (Adotech)</b> dado que es una etapa con alta probabilidad de que un usuario no logre avanzar en el flujo, por lo que tendremos métricas asociadas a cantidad de usuarios e intentos fallidos asociados a ciertas causales de error de validación, como el comportamiento temporal de dichas validaciones biométricas fallidas/exitosas </li>
+  </ul>
+</p>
+<p>
+  Por otra parte se tendrán unas gráficas en Google Charts para identificar de manera descriptiva las características más relevantes (y su distribución) de todos los usuarios que participan en el onboarding hasta la fecha.
+  </p>
+</font>
+</div>
+
+<h2><u> Resultados </u></h2>
+
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  A continuación presentamos de manera embebida el <b> dashboard de Power BI </b>
+</p>
+</font>
+</div>
+
+<div class="container">
+  <div class="center">
+  <iframe title="ONBOARDING CLIENTES - Home" width="1600" height="1024" src="https://app.powerbi.com/view?r=eyJrIjoiYzE3NmMwYjAtNDM5YS00MDkyLTljZWMtNzA2ODhjYjE0NzQ4IiwidCI6IjI5OWEyODgxLTEzODAtNDAyMC1iNDJmLTcxNWEzNWUxYmNhZiIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
+  </div>
+</div>
+
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  Nos centraremos en los resultados presentados en el mes de marzo 2022, identificando lo siguiente:
+  <ul>
+  <li>El 70% de los usuarios que inician onboarding, lo logran finalizar de manera exitosa, lo anterior indica un comportamiento regular, ya que se espera que haya una conversión de al menos el 85%</li>
+  <li>La etapa en el flujo en la que más usuarios no lograron avanzar fue en la validación biométrica con un 19% aprox (onboarding + identity biometric), demostrando que efectivamente dicho proceso tiene oportunidades de mejora</li>
+  <li>Para ser un flujo completamente digital y automatizado, se observa que el tiempo promedio de finalización de onboarding es de 17 minutos, el cual esta por encima del esperado, ya que se tiene la meta de que el proceso se logre e2e en menos de 10 minutos</li>
+  <li>Hay aproximadamente un 6.6% de usuarios que requieren una validación adicional por parte de riesgo y cumplimiento (Blacklisted Users)</li>
+  <li>A nivel semanal se observa que la cantidad de usuarios que finalizan el onboarding exitosamente esta entre 54% y el 74% del total de los usuarios que iniciaron onboarding</li>
+  <li>Se observa que la mayor cantidad de tiempo que gastan los usuarios está centrado en la etapa de validación biométrica (onboarding + identity biometric) con valor aproximado de 7 minutos, lo anterior demuestra que los usuarios están teniendo respuestas demoradas en la validación (la cual es automática) como también muchos intentos de validación biométrica.</li>
+  <li>La validación biométrica refleja que hay 2120 usuarios (31.8%) que presentaron al menos 1 fallo en la validación con 4276 intentos fallidos de un total de 9487 intentos de validación</li>
+  <li>Las causales que más reflejan intentos fallidos de validación biométrica corresponden a fallos en el cotejo facial entre el documento de identidad y la foto, como también fallos por documentos de identidad no válidos </li>
+  </ul>
+</p>
+</font>
+</div>
+
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  Por otra parte tenemos las gráficas de <b> google charts </b> que mostraremos a continuación:
+</p>
+</font>
+</div>
+
+<div class="container">
+  <div class="center">
+    <iframe width="500" height="445" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFEPRaWwc-BNJfnuFH-lbvv7s0V3uBsjno31gVlKEwFunGvfhdbNPJJtmJgqNt6vGZyjZasPsLB7eA/pubchart?oid=1051042853&amp;format=interactive"></iframe>
+    -
+    <iframe width="500" height="445" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFEPRaWwc-BNJfnuFH-lbvv7s0V3uBsjno31gVlKEwFunGvfhdbNPJJtmJgqNt6vGZyjZasPsLB7eA/pubchart?oid=1818041360&amp;format=interactive"></iframe>
+    -
+    <iframe width="550" height="445" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTFEPRaWwc-BNJfnuFH-lbvv7s0V3uBsjno31gVlKEwFunGvfhdbNPJJtmJgqNt6vGZyjZasPsLB7eA/pubchart?oid=79280611&amp;format=interactive"></iframe>
+  </div>
+</div>
+
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  Para los siguiente resultados partimos del comportamiento global de los usuarios que han hecho onboarding hasta la fecha (Abril 2022):
+  <ul>
+    <li>La mayor cantidad de clientes corresponden a las personas de edad entre 18 y 40 años, lo cual tiene sentido ya que el producto digital está principalmente enfocado a ese segmento</li>
+    <li>El 51% de los usuarios que realizaron el onboarding son hombres, mientras que tan solo el 13.4% son mujeres, el porcentaje restante (35.6%) aún no se cuenta con el atributo capturado</li>
+    <li>A nivel regional se observa que el onboarding ha sido usado principalmente por las regiones de mayor densidad urbana como Antioquia (26.52%), Cundinamarca (21.1%), Valle del Cauca (14.47%) y la capital de Colombia - Bogotá (11.08%)</li>
+  </ul>
+</p>
+</font>
+</div>
+
+<h2><u> Conclusiones </u></h2>
+
+<div>
+<font face="nunito,arial,verdana"> 
+<p>
+  <ul>
+  <li>Dado los resultados observados encontramos que el proceso de validación biométrica aún no tiene la suficiente madurez para soportar una gran cantidad de usuarios que realicen el onboarding, por lo que es necesario robustecer dicho proceso para evitar falsos-positivos con las causales de fallo, problemas de comunicación entre el banco y el proveedor de validación biométrica entre otros inconvenientes que hagan de este paso una mala experiencia de usuario y que finalmente se refleje en mala publicidad o una mala salida al público en general.</li>
+
+  <li>Es necesario implementar algún mecanismo para reactivar los usuarios que abandonan el proceso ya que son bastantes, haciendo uso de notificaciones push en la aplicación y evitar largos periodos de tiempo en los que el usuario no vuelve a intentar el proceso o que finalmente desisten del mismo.</li>
+  
+  <li>En aspectos de visualización, hacer uso de los correctos tipos de gráficos permiten dar un mensaje más claro, como por ejemplo las barras horizontales para comparar magnitudes entre categorías, anillos para la composición de una variable con baja cardinalidad, funnels para identificar caídas en un flujo, cascadas para ver el comportamiento acumulativo de los valores de una variable ordinal</li>
+
+  <li>El uso correcto de colores (paleta de colores) y que estos vayan ligados a los colores corporativos, hacen del producto visual más apropiado a la cultura de la organización, además de que el correcto contraste de los mismos, permiten dar una mejor visibilidad de la representación</li>
+  </ul>
+
+</p>
+</font>
+</div>
+
+</body>
+
